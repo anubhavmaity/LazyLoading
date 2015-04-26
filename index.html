@@ -34,7 +34,10 @@
     		
     		if(scroll > window_h + (count-1)*image_height - 200 && count < image_jsonData_length){
     			console.log(image_jsonData);
-    			$('ul').append('<li><img class="lazy" src="'+image_jsonData[count].images.standard_resolution.url+'""></li><br/>'); 
+    			var id = "#image" + count;
+    			console.log(id);
+    			$(id).attr('src', image_jsonData[count].images.standard_resolution.url);
+    			//$('ul').append('<li><img class="lazy" src="'+image_jsonData[count].images.standard_resolution.url+'""></li><br/>'); 
     			count = count + 1;
     			console.log(count);
     		}
@@ -52,8 +55,13 @@
 		        image_jsonData_length = image_jsonData.length;
 		        //console.log(image_jsonData_length);
 		        //console.log(image_jsonData[0].images.standard_resolution.url);
-
-		        $('ul').append('<li><img class="lazy" src="'+image_jsonData[0].images.standard_resolution.url+'""></li><br/>');
+		        for (x in data.data){
+		        	var id="image"+x
+		        	$('ul').append('<li><img class="lazy" id="'+id+'" width="640" height="640" ></li><br/>');
+		        	console.log(x);
+		        }
+		        $('#image0').attr('src', image_jsonData[0].images.standard_resolution.url);
+		        //$('ul').append('<li><img class="lazy" src="'+image_jsonData[0].images.standard_resolution.url+'""></li><br/>');
 		        image_height = image_jsonData[0].images.standard_resolution.height;
 
 		    },
