@@ -22,6 +22,7 @@
 	<script>
 		var accessToken = '546e71022cee4faf84dc01167fe9d400';
 		var image_jsonData;
+		var image_jsonData_length;
 		console.log($(window).height());
 		var window_h = $(window).height();
 		var count = 1;
@@ -31,10 +32,11 @@
     		var scroll = $(window).scrollTop();
     		console.log(scroll);
     		
-    		if(scroll > window_h + (count-1)*image_height - 200){
+    		if(scroll > window_h + (count-1)*image_height - 200 && count < image_jsonData_length){
     			console.log(image_jsonData);
     			$('ul').append('<li><img class="lazy" src="'+image_jsonData[count].images.standard_resolution.url+'""></li><br/>'); 
     			count = count + 1;
+    			console.log(count);
     		}
     		
 		});
@@ -47,10 +49,13 @@
 		    success: function(data){
 		        console.log(data);
 		        image_jsonData = data.data;
-		        console.log(image_jsonData[0].images.standard_resolution.url);
+		        image_jsonData_length = image_jsonData.length;
+		        //console.log(image_jsonData_length);
+		        //console.log(image_jsonData[0].images.standard_resolution.url);
 
 		        $('ul').append('<li><img class="lazy" src="'+image_jsonData[0].images.standard_resolution.url+'""></li><br/>');
 		        image_height = image_jsonData[0].images.standard_resolution.height;
+
 		    },
 		    error: function(data){
 		        console.log(data);
