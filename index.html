@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>BackboneTutorials.com Beginner Videos</title>
+	<link rel="stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Instagram Pics</h1>
+		<hr/>
+		<div class="page">
+		
+			<ul></ul>
+
+		
+		</div>
+	</div>
+	
+	
+	<script src="jquery/jquery.js"></script>
+	<script>
+		var accessToken = '546e71022cee4faf84dc01167fe9d400';
+		var image_jsonData;
+		console.log($(window).height());
+		var window_h = $(window).height();
+		var count = 1;
+		var image_height;
+
+		$(window).scroll(function (event) {
+    		var scroll = $(window).scrollTop();
+    		console.log(scroll);
+    		
+    		if(scroll > window_h + (count-1)*image_height - 200){
+    			console.log(image_jsonData);
+    			$('ul').append('<li><img class="lazy" src="'+image_jsonData[count].images.standard_resolution.url+'""></li><br/>'); 
+    			count = count + 1;
+    		}
+    		
+		});
+
+		$.ajax({
+		    url: 'https://api.instagram.com/v1/tags/nofilter/media/recent?',
+		    dataType: 'jsonp',
+		    type: 'GET',
+		    data: {client_id: accessToken},
+		    success: function(data){
+		        console.log(data);
+		        image_jsonData = data.data;
+		        console.log(image_jsonData[0].images.standard_resolution.url);
+
+		        $('ul').append('<li><img class="lazy" src="'+image_jsonData[0].images.standard_resolution.url+'""></li><br/>');
+		        image_height = image_jsonData[0].images.standard_resolution.height;
+		    },
+		    error: function(data){
+		        console.log(data);
+		    }
+		});
+
+
+		
+
+
+
+	</script>
+	
+</body>
+</html>
