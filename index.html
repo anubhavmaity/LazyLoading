@@ -57,7 +57,8 @@
 		        //console.log(image_jsonData[0].images.standard_resolution.url);
 		        for (x in data.data){
 		        	var id="image"+x
-		        	$('ul').append('<li><img class="lazy" id="'+id+'" width="640" height="640" ></li><br/>');
+		        	//$('ul').append('<li><img class="lazy" id="'+id+'" width="640" height="640" ></li><br/>');
+		        	$('.page').append('<img class="lazy" id="'+id+'" width="640" height="640"> <br/>');
 		        	console.log(x);
 		        }
 		        $('#image0').attr('src', image_jsonData[0].images.standard_resolution.url);
