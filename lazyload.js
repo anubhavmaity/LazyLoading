@@ -7,7 +7,7 @@ var image_height = 640;
 
 $(window).scroll(function (event) {
     var scroll = $(window).scrollTop();
-    //user scrolls down the page enough to bring them inside the visible viewport region then load the subsequent images
+    //user scrolls down the page enough to bring them inside the visible viewport region to load the subsequent image
     if (scroll > window_h + (count - 1) * image_height - 450 && count < image_jsonData_length) {
         var id = "#image" + count;
         $(id).attr('src', image_jsonData[count].images.standard_resolution.url);
