@@ -12,7 +12,7 @@ $(window).scroll(function (event) {
     //user scrolls down the page enough to bring them inside the visible viewport region to load the subsequent image
         $('img[realsrc]').each(function(i){
           var t = $(this);
-          if(t.position().top < (scroll+$(window).height())){
+          if(t.position().top <= (scroll+$(window).height())){
             t.attr('src', image_jsonData[count].images.standard_resolution.url); // trigger the image load
             t.removeAttr('realsrc'); // so we only process this image once
             count = count + 1;
