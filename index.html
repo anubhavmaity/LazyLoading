@@ -31,7 +31,7 @@
     		var scroll = $(window).scrollTop();
     		
     		
-    		if(scroll > window_h + (count-1)*image_height - 500 && count < image_jsonData_length){
+    		if(scroll > window_h + (count-1)*image_height - 450 && count < image_jsonData_length){
     			var id = "#image" + count;
     			$(id).attr('src', image_jsonData[count].images.standard_resolution.url);
     			count = count + 1;
