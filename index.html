@@ -9,11 +9,7 @@
     <div class="container">
         <h1>Instagram Pics</h1>
         <hr/>
-        <div class="page">
-        
-            <ul></ul>
-
-        
+        <div class="page">        
         </div>
     </div> 
     <script src="jquery/jquery.js"></script>
@@ -26,7 +22,7 @@
             data: {client_id: accessToken},
             success: function(data){
                 for (x in data.data){
-                    $('ul').append('<li><img class="lazy" src="'+data.data[x].images.standard_resolution.url+'""></li><br/>');
+                    $('.page').append('<img class="lazy" src="'+data.data[x].images.standard_resolution.url+'""><br/>');
                 }
             },
             error: function(data){
