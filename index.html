@@ -23,23 +23,18 @@
 		var accessToken = '546e71022cee4faf84dc01167fe9d400';
 		var image_jsonData;
 		var image_jsonData_length;
-		console.log($(window).height());
 		var window_h = $(window).height();
 		var count = 1;
 		var image_height;
 
 		$(window).scroll(function (event) {
     		var scroll = $(window).scrollTop();
-    		console.log(scroll);
     		
-    		if(scroll > window_h + (count-1)*image_height - 200 && count < image_jsonData_length){
-    			console.log(image_jsonData);
+    		
+    		if(scroll > window_h + (count-1)*image_height - 500 && count < image_jsonData_length){
     			var id = "#image" + count;
-    			console.log(id);
     			$(id).attr('src', image_jsonData[count].images.standard_resolution.url);
-    			//$('ul').append('<li><img class="lazy" src="'+image_jsonData[count].images.standard_resolution.url+'""></li><br/>'); 
     			count = count + 1;
-    			console.log(count);
     		}
     		
 		});
@@ -50,19 +45,17 @@
 		    type: 'GET',
 		    data: {client_id: accessToken},
 		    success: function(data){
-		        console.log(data);
+		        
 		        image_jsonData = data.data;
 		        image_jsonData_length = image_jsonData.length;
-		        //console.log(image_jsonData_length);
-		        //console.log(image_jsonData[0].images.standard_resolution.url);
+		   
 		        for (x in data.data){
 		        	var id="image"+x
-		        	//$('ul').append('<li><img class="lazy" id="'+id+'" width="640" height="640" ></li><br/>');
+		       
 		        	$('.page').append('<img class="lazy" id="'+id+'" width="640" height="640"> <br/>');
-		        	console.log(x);
+		        	
 		        }
 		        $('#image0').attr('src', image_jsonData[0].images.standard_resolution.url);
-		        //$('ul').append('<li><img class="lazy" src="'+image_jsonData[0].images.standard_resolution.url+'""></li><br/>');
 		        image_height = image_jsonData[0].images.standard_resolution.height;
 
 		    },
