@@ -9,9 +9,10 @@ var id = "#image1";
 $(window).scroll(function (event) {
     var scroll = $(window).scrollTop();
 
-    //user scrolls down the page enough to bring them inside the visible viewport region to load the subsequent image
+    
         $('img[realsrc]').each(function(i){
           var t = $(this);
+          //user scrolls down the page enough to bring them inside the visible viewport region to load the subsequent image
           if(t.position().top <= (scroll+$(window).height())){
             t.attr('src', image_jsonData[count].images.standard_resolution.url); // trigger the image load
             t.removeAttr('realsrc'); // so we only process this image once
@@ -20,7 +21,7 @@ $(window).scroll(function (event) {
     
     });
 });
-
+//api call
 $.ajax({
     url: 'https://api.instagram.com/v1/tags/nofilter/media/recent?',
     dataType: 'jsonp',
